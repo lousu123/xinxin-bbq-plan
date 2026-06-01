@@ -1,794 +1,1093 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>欣欣炭火烧烤 · 全渠道运营方案</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Noto Sans SC', 'Calibri', sans-serif; background: #F5F2ED; color: #2D2D2D; line-height: 1.8; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欣欣炭火烧烤 · 全渠道运营方案</title>
+    <style>
+        :root {
+            --primary: #D4380D;
+            --primary-light: #FF7A45;
+            --primary-dark: #8C1B00;
+            --gold: #FAAD14;
+            --gold-dark: #D48806;
+            --bg-dark: #1A0A0A;
+            --bg-card: #2A1212;
+            --text-primary: #FFF2E8;
+            --text-secondary: #D9BBA8;
+            --text-muted: #8C6E5A;
+            --accent-bg: #3D1A1A;
+            --border: #4A2828;
+        }
 
-  /* ===== COVER ===== */
-  .cover {
-    background: linear-gradient(135deg, #1A0A0A 0%, #3D1515 40%, #6B0E0E 100%);
-    color: #FDF6EC;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 60px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-  .cover::before {
-    content: '🔥';
-    position: absolute;
-    top: -20px; left: -20px;
-    font-size: 300px;
-    opacity: 0.06;
-    transform: rotate(-15deg);
-  }
-  .cover::after {
-    content: '🥩';
-    position: absolute;
-    bottom: -40px; right: -20px;
-    font-size: 250px;
-    opacity: 0.06;
-    transform: rotate(20deg);
-  }
-  .cover .badge { 
-    background: #F0B429; color: #1A0A0A; 
-    padding: 8px 24px; border-radius: 20px;
-    font-size: 14px; font-weight: 700; letter-spacing: 3px;
-    margin-bottom: 30px;
-    display: inline-block;
-  }
-  .cover h1 { font-size: clamp(42px, 6vw, 72px); font-weight: 900; letter-spacing: 4px; margin-bottom: 16px; }
-  .cover h1 span { color: #F0B429; }
-  .cover .subtitle { font-size: clamp(18px, 2.5vw, 28px); font-weight: 300; opacity: 0.85; margin-bottom: 40px; }
-  .cover .meta { font-size: 14px; opacity: 0.6; letter-spacing: 2px; }
-  .cover .meta span { margin: 0 12px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  /* ===== CONTAINER ===== */
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+        body {
+            font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
 
-  /* ===== SECTION ===== */
-  .section { padding: 60px 0; position: relative; }
-  .section-tag {
-    display: inline-block;
-    background: #6B0E0E; color: #FDF6EC;
-    font-size: 12px; font-weight: 700; letter-spacing: 2px;
-    padding: 4px 14px; border-radius: 4px;
-    margin-bottom: 16px;
-  }
-  .section h2 {
-    font-size: clamp(28px, 3.5vw, 40px);
-    font-weight: 700;
-    color: #1A0A0A;
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-  .section h2 .highlight { color: #6B0E0E; }
-  .section .divider {
-    width: 60px; height: 3px; background: #F0B429;
-    margin: 16px 0 32px 0; border-radius: 2px;
-  }
-  .section .lead { font-size: 16px; color: #666; margin-bottom: 32px; }
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            background: linear-gradient(135deg, #1A0A0A 0%, #2A1212 30%, #3D1A1A 60%, #1A0A0A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 56, 13, 0.08) 0%, transparent 60%);
+            animation: pulse 6s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 900px; }
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #FF7A45, #FAAD14, #FF7A45);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        .hero .meta {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 20px;
+        }
+        .hero .fire-emoji {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 20px;
+        }
 
-  /* ===== CARDS ===== */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 24px 0; }
-  .card {
-    background: #fff; border-radius: 12px; padding: 28px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    border: 1px solid rgba(0,0,0,0.04);
-    transition: transform 0.2s ease;
-  }
-  .card:hover { transform: translateY(-2px); }
-  .card .icon { font-size: 32px; margin-bottom: 12px; }
-  .card h3 { font-size: 18px; color: #6B0E0E; margin-bottom: 8px; }
-  .card p { font-size: 14px; color: #555; line-height: 1.7; }
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-  /* ===== DATA ROW ===== */
-  .data-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin: 24px 0; }
-  .data-item {
-    background: #fff; border-radius: 10px; padding: 20px;
-    text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    border-top: 3px solid #6B0E0E;
-  }
-  .data-item .num { font-size: 28px; font-weight: 900; color: #6B0E0E; }
-  .data-item .num .unit { font-size: 16px; font-weight: 400; }
-  .data-item .label { font-size: 12px; color: #888; margin-top: 4px; letter-spacing: 1px; }
+        /* Section */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .section:last-child { border-bottom: none; }
 
-  /* ===== TABLE ===== */
-  .table-wrap { overflow-x: auto; margin: 24px 0; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  thead { background: #6B0E0E; color: #FDF6EC; }
-  th { padding: 14px 16px; text-align: left; font-weight: 600; font-size: 13px; letter-spacing: 1px; }
-  td { padding: 12px 16px; border-bottom: 1px solid #eee; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover { background: #FDF6EC; }
-  .tag {
-    display: inline-block; padding: 2px 10px; border-radius: 12px;
-    font-size: 12px; font-weight: 600;
-  }
-  .tag-red { background: #FDE8E8; color: #6B0E0E; }
-  .tag-gold { background: #FEF3D5; color: #8B6914; }
-  .tag-green { background: #E6F7E6; color: #1A7A1A; }
-  .tag-blue { background: #E6F0FF; color: #1A5A8B; }
+        .section-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title .num {
+            font-size: 14px;
+            background: var(--primary);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+            padding-left: 44px;
+        }
 
-  /* ===== HIGHLIGHT BOX ===== */
-  .highlight-box {
-    background: linear-gradient(135deg, #FDF6EC 0%, #FEF3D5 100%);
-    border-left: 4px solid #F0B429;
-    border-radius: 0 12px 12px 0;
-    padding: 24px 28px;
-    margin: 24px 0;
-  }
-  .highlight-box h4 { color: #6B0E0E; font-size: 16px; margin-bottom: 8px; }
-  .highlight-box p, .highlight-box li { font-size: 14px; color: #444; line-height: 1.8; }
-  .highlight-box ul { padding-left: 20px; margin-top: 8px; }
-  .highlight-box ul li { margin-bottom: 4px; }
+        /* Cards Grid */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
 
-  .warn-box {
-    background: #FFF5F5;
-    border-left: 4px solid #6B0E0E;
-    border-radius: 0 12px 12px 0;
-    padding: 24px 28px;
-    margin: 24px 0;
-  }
-  .warn-box h4 { color: #6B0E0E; font-size: 16px; margin-bottom: 8px; }
-  .warn-box p, .warn-box li { font-size: 14px; color: #444; line-height: 1.8; }
-  .warn-box ul { padding-left: 20px; margin-top: 8px; }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: all 0.3s;
+        }
+        .card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(212, 56, 13, 0.15);
+        }
+        .card .icon { font-size: 28px; margin-bottom: 12px; }
+        .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text-primary); }
+        .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
 
-  /* ===== STEP ===== */
-  .step-list { counter-reset: step; padding: 0; margin: 24px 0; }
-  .step-item {
-    display: flex; gap: 20px; padding: 20px 0;
-    border-bottom: 1px dashed #ddd;
-    counter-increment: step;
-  }
-  .step-item:last-child { border-bottom: none; }
-  .step-num {
-    flex-shrink: 0;
-    width: 44px; height: 44px;
-    background: #6B0E0E; color: #FDF6EC;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 900; font-size: 18px;
-  }
-  .step-content { flex: 1; }
-  .step-content h4 { font-size: 17px; color: #1A0A0A; margin-bottom: 6px; }
-  .step-content p, .step-content li { font-size: 14px; color: #555; line-height: 1.7; }
-  .step-content ul { padding-left: 18px; margin-top: 6px; }
-  .step-content ul li { margin-bottom: 3px; }
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, var(--primary-dark), var(--bg-card));
+            border: 1px solid var(--primary);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 20px 0;
+        }
+        .highlight-box h3 {
+            color: var(--gold);
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+        .highlight-box p, .highlight-box li {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
 
-  /* ===== KPI ===== */
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
-  .kpi-card {
-    background: #1A0A0A; color: #FDF6EC;
-    border-radius: 12px; padding: 24px;
-    text-align: center;
-  }
-  .kpi-card .val { font-size: 36px; font-weight: 900; color: #F0B429; }
-  .kpi-card .val .unit { font-size: 16px; font-weight: 400; }
-  .kpi-card .desc { font-size: 13px; opacity: 0.7; margin-top: 8px; }
+        /* Tag */
+        .tag {
+            display: inline-block;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-right: 6px;
+            margin-bottom: 6px;
+        }
+        .tag-red { background: rgba(212, 56, 13, 0.2); color: #FF7A45; }
+        .tag-gold { background: rgba(250, 173, 20, 0.15); color: #FAAD14; }
+        .tag-green { background: rgba(82, 196, 26, 0.15); color: #95DE64; }
+        .tag-blue { background: rgba(24, 144, 255, 0.15); color: #69C0FF; }
 
-  /* ===== BUDGET ===== */
-  .budget-row { display: flex; flex-wrap: wrap; gap: 16px; margin: 24px 0; }
-  .budget-item {
-    flex: 1; min-width: 200px;
-    background: #fff; border-radius: 10px; padding: 20px;
-    text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  }
-  .budget-item .label { font-size: 12px; color: #888; letter-spacing: 1px; }
-  .budget-item .amt { font-size: 24px; font-weight: 700; color: #6B0E0E; margin: 8px 0; }
-  .budget-item .note { font-size: 12px; color: #999; }
+        /* Table */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th {
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            padding: 14px 16px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        tr:hover td { background: rgba(212, 56, 13, 0.05); }
 
-  /* ===== FOOTER ===== */
-  .footer {
-    background: #1A0A0A; color: #FDF6EC;
-    text-align: center; padding: 40px 24px;
-    font-size: 14px; opacity: 0.7;
-  }
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 0 0 32px 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid var(--gold);
+        }
+        .timeline-item h4 {
+            font-size: 16px;
+            color: var(--gold);
+            margin-bottom: 4px;
+        }
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
 
-  /* ===== RESPONSIVE ===== */
-  @media (max-width: 640px) {
-    .section { padding: 40px 0; }
-    .card-grid { grid-template-columns: 1fr; }
-    .data-row { grid-template-columns: repeat(2, 1fr); }
-    .step-num { width: 36px; height: 36px; font-size: 15px; }
-  }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .section { padding: 40px 0; }
+            .card { padding: 20px 16px; }
+        }
 
-  /* ===== PRINT ===== */
-  @media print {
-    .cover { min-height: 100vh; page-break-after: always; }
-    .section { page-break-inside: avoid; }
-  }
-</style>
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* Number stat */
+        .stat-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .stat-item {
+            flex: 1;
+            min-width: 140px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-item .num {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .stat-item .label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .flow-chart {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+        .flow-step {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+        }
+        .flow-step .step-box {
+            background: var(--primary-dark);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .flow-step .arrow {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
+        .price-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .price-card.featured {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--primary-dark), var(--bg-card));
+            position: relative;
+        }
+        .price-card.featured::before {
+            content: '推荐';
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--gold);
+            color: #1A0A0A;
+            padding: 2px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .price-card .price {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--gold);
+        }
+        .price-card .unit { font-size: 14px; color: var(--text-muted); }
+        .price-card h4 { font-size: 18px; margin-bottom: 8px; }
+        .price-card p { font-size: 13px; color: var(--text-muted); }
+        .price-card ul { text-align: left; margin-top: 12px; }
+        .price-card ul li {
+            list-style: none;
+            font-size: 13px;
+            color: var(--text-secondary);
+            padding: 4px 0;
+        }
+        .price-card ul li::before { content: '✓ '; color: var(--gold); }
+
+        .checklist li {
+            list-style: none;
+            padding: 4px 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .checklist li::before { content: '🔥 '; }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .kpi-card .kpi-target { font-size: 28px; font-weight: 800; color: var(--gold); }
+        .kpi-card .kpi-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+        .kpi-card .kpi-desc { font-size: 12px; color: var(--text-secondary); margin-top: 8px; }
+    </style>
 </head>
 <body>
 
-<!-- ======== COVER ======== -->
-<section class="cover">
-  <div class="badge">🔥 全渠道运营方案</div>
-  <h1>欣欣<span>炭火</span>烧烤</h1>
-  <p class="subtitle">品质烧烤 · 从0到1 · 智能收银复购闭环</p>
-  <p class="meta">
-    <span>📍 天津·塘沽工农村</span>
-    <span>🔥 炭火烧烤</span>
-    <span>📅 2026年6月</span>
-  </p>
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">🔥 全渠道运营方案</div>
+        <span class="fire-emoji">🔥🥩🍺</span>
+        <h1>欣欣炭火烧烤</h1>
+        <p class="subtitle">品质烧烤 · 北京老师傅匠心出品</p>
+        <p class="subtitle" style="font-size:1rem;color:var(--text-muted);">塘沽工农村 · 新店起盘 · 从0到1全案</p>
+        <p class="meta">2026年6月 · 全渠道运营方案</p>
+    </div>
 </section>
 
-<!-- ======== NAV ======== -->
 <div class="container">
-  <div class="section" style="padding-bottom: 0;">
-    <div class="card-grid">
-      <div class="card"><div class="icon">🔍</div><h3>01 · 现状诊断</h3><p>店铺现状分析</p></div>
-      <div class="card"><div class="icon">🎯</div><h3>02 · 核心策略</h3><p>四大增长引擎</p></div>
-      <div class="card"><div class="icon">🛒</div><h3>03 · 团购方案</h3><p>线上从0到1</p></div>
-      <div class="card"><div class="icon">🧾</div><h3>04 · 收银复购</h3><p>智能收银闭环</p></div>
-      <div class="card"><div class="icon">📢</div><h3>05 · 推广通</h3><p>精准投放策略</p></div>
-      <div class="card"><div class="icon">🎬</div><h3>06 · 内容营销</h3><p>抖音达人+外摆烟火气</p></div>
-      <div class="card"><div class="icon">💰</div><h3>07 · 预算KPI</h3><p>投入产出目标</p></div>
-      <div class="card"><div class="icon">📋</div><h3>08 · 执行节奏</h3><p>30天起盘计划</p></div>
-    </div>
-  </div>
-</div>
 
-<!-- ======== 01 现状诊断 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">01</div>
-    <h2>店铺<span class="highlight">现状诊断</span></h2>
-    <div class="divider"></div>
-    <p class="lead">欣欣炭火烧烤处于"产品能力强、线上能力弱"的阶段，核心痛点和机会点如下：</p>
+<!-- ==================== 一、现状诊断 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">1</span> 店铺现状诊断</div>
+    <p class="section-desc">从店铺现状中发现问题，从问题中找到机会</p>
 
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">✅</div>
-        <h3>优势 · Strengths</h3>
-        <ul style="padding-left:18px;font-size:14px;color:#555;line-height:2;">
-          <li>👨‍🍳 <strong>顶级烤串师傅</strong> — 北京专程请来</li>
-          <li>🥩 <strong>食材品质过硬</strong> — 进价高于市场，好肉自己会说话</li>
-          <li>🔥 <strong>烧烤旺季</strong> — 6月正是品类高峰期</li>
-          <li>🏪 <strong>外摆烟火气</strong> — 天然内容素材（抖音/小红书传播力强）</li>
-          <li>🎬 <strong>达人渠道</strong> — 老板已在接触抖音达人</li>
-          <li>🪑 二楼10桌 — 可做堂食稳客单价</li>
-        </ul>
-      </div>
-      <div class="card">
-        <div class="icon">❌</div>
-        <h3>劣势 · Weaknesses</h3>
-        <ul style="padding-left:18px;font-size:14px;color:#555;line-height:2;">
-          <li>🌐 <strong>线上完全空白</strong> — 美团团购未上架</li>
-          <li>📱 <strong>无线上曝光</strong> — 大众点评暂无星级</li>
-          <li>🏠 <strong>一楼无堂食</strong> — 仅外摆+二楼10桌，产能有限</li>
-          <li>📊 <strong>无客户数据沉淀</strong> — 无法做复购触达</li>
-          <li>🤝 <strong>无系统化管理</strong> — 收银、点单、会员全部缺失</li>
-        </ul>
-      </div>
+    <div class="stat-row">
+        <div class="stat-item">
+            <div class="num">0</div>
+            <div class="label">线上星级（全新店）</div>
+        </div>
+        <div class="stat-item">
+            <div class="num">0</div>
+            <div class="label">美团团购（未上架）</div>
+        </div>
+        <div class="stat-item">
+            <div class="num">10</div>
+            <div class="label">二楼桌位（约）</div>
+        </div>
+        <div class="stat-item">
+            <div class="num">外摆</div>
+            <div class="label">一楼堂食形式</div>
+        </div>
     </div>
+
+    <div class="grid-2" style="margin-top:20px;">
+        <div class="card">
+            <div class="icon">⚠️</div>
+            <h3>劣势与挑战</h3>
+            <ul class="checklist">
+                <li>线上完全空白，无团购/无星级/无口碑积累</li>
+                <li>一楼无堂食，仅外摆（天气受限）</li>
+                <li>二楼仅10桌，翻台空间有限</li>
+                <li>品质食材成本高，不适合打价格战</li>
+                <li>新店认知度为零，需从0起盘</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="icon">✅</div>
+            <h3>优势与机会</h3>
+            <ul class="checklist">
+                <li>🔥 北京老师傅坐镇，口味有底气</li>
+                <li>🥩 食材进价高=品质差异化壁垒</li>
+                <li>🏪 外摆天然有烟火气，适合短视频传播</li>
+                <li>📈 线上空白 = 增长空间巨大</li>
+                <li>🌞 夏季烧烤旺季，窗口期绝佳</li>
+                <li>🎯 老板已在接触抖音达人，有内容意识</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:20px;">
+        <h3>🎯 核心里程碑</h3>
+        <p><strong>线上从0到1</strong> → 以品质烧烤为定位，在美团/点评建立品牌认知<br>
+        <strong>智能收银复购闭环</strong> → 每一分推广费花一次、用多次，让流量变留量<br>
+        <strong>内容引爆</strong> → 外摆烟火气+北京老师傅故事=天然爆款素材</p>
+    </div>
+</section>
+
+<!-- ==================== 二、核心策略 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">2</span> 核心策略 · 品质烧烤降本增效</div>
+    <p class="section-desc">不走低价路线，打品质差异化 + 收银系统复购闭环</p>
+
+    <div class="grid-3">
+        <div class="card">
+            <div class="icon">🎯</div>
+            <h3>品质定位</h3>
+            <p>「北京老师傅·好肉烤好串」—— 用食材品质和手艺建立口碑壁垒，不打9.9元低价战</p>
+            <div class="badge-list" style="margin-top:12px;">
+                <span class="tag tag-gold">¥80-100客单价</span>
+                <span class="tag tag-red">品质套餐</span>
+                <span class="tag tag-green">差异化定位</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">🔄</div>
+            <h3>智能收银 · 复购闭环</h3>
+            <p>推广通引流→收银系统沉淀客户数据→自动化触达复购，让每一分钱花一次、用多次</p>
+            <div class="badge-list" style="margin-top:12px;">
+                <span class="tag tag-blue">会员标签</span>
+                <span class="tag tag-gold">自动化营销</span>
+                <span class="tag tag-red">降本增效</span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="icon">📱</div>
+            <h3>内容引爆</h3>
+            <p>外摆烟火气+老师傅匠心故事 → 抖音/小红书/点评多平台种草，达人探店引爆</p>
+            <div class="badge-list" style="margin-top:12px;">
+                <span class="tag tag-green">抖音达人</span>
+                <span class="tag tag-blue">内容种草</span>
+                <span class="tag tag-gold">外摆氛围</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="flow-chart" style="margin-top:24px;">
+        <p style="color:var(--gold);font-weight:600;margin-bottom:16px;">🔁 降本增效 · 完整闭环</p>
+        <div class="flow-step">
+            <span class="step-box">📢 推广通精准引流</span>
+            <span class="arrow">→</span>
+            <span class="step-box">🏪 到店消费 · 收银系统记录</span>
+            <span class="arrow">→</span>
+            <span class="step-box">👤 客户标签化（口味/消费力）</span>
+        </div>
+        <div class="flow-step">
+            <span class="step-box">📱 自动化复购触达（短信/消息）</span>
+            <span class="arrow">→</span>
+            <span class="step-box">🔄 客户再次到店</span>
+            <span class="arrow">→</span>
+            <span class="step-box">📊 数据沉淀·持续优化</span>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 三、团购设计 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">3</span> 团购策略 · 不做低价做品质</div>
+    <p class="section-desc">肉进价比同行高，打折就是亏本。改做"品质套餐+特色单品"策略</p>
+
+    <div class="grid-3">
+        <div class="price-card featured">
+            <h4>🔥 招牌双人餐</h4>
+            <div class="price">¥168</div>
+            <div class="unit">原价 ¥238 · 约7折</div>
+            <ul>
+                <li>北京老师傅鲜烤牛肉串15串</li>
+                <li>秘制烤羊排（小份）</li>
+                <li>烤蔬菜拼盘</li>
+                <li>干啤2杯</li>
+                <li>小菜2份</li>
+            </ul>
+        </div>
+        <div class="price-card">
+            <h4>🍺 兄弟4人餐</h4>
+            <div class="price">¥328</div>
+            <div class="unit">原价 ¥468 · 约7折</div>
+            <ul>
+                <li>鲜烤牛肉串30串</li>
+                <li>烤羊腰/烤鸡翅（各5串）</li>
+                <li>小龙虾1份（3斤）</li>
+                <li>干啤4杯</li>
+                <li>凉菜4份</li>
+            </ul>
+        </div>
+        <div class="price-card">
+            <h4>🎣 小龙虾引流单品</h4>
+            <div class="price">¥99</div>
+            <div class="unit">小龙虾3斤（成本价引流）</div>
+            <ul>
+                <li>限每日前20份</li>
+                <li>仅限到店堂食</li>
+                <li>搭配酒水消费</li>
+                <li>拉动客单提升</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:20px;">
+        <h3>💡 团购运营要点</h3>
+        <div class="grid-2" style="margin-top:12px;">
+            <div>
+                <p><strong>✅ 不做低价引流</strong><br>
+                不设9.9/19.9超低价券，保护品质形象，避免吸引低消费力客户</p>
+            </div>
+            <div>
+                <p><strong>✅ 打卡收藏有礼</strong><br>
+                「到店打卡+收藏店铺」送特色小菜1份，合规提升星级和曝光（非好评返现）</p>
+            </div>
+            <div>
+                <p><strong>✅ 阶梯定价策略</strong><br>
+                双人¥168 → 四人¥328，越多人均越低，鼓励聚餐场景</p>
+            </div>
+            <div>
+                <p><strong>✅ 限时小龙虾引流</strong><br>
+                每日限量制造稀缺感，引导到店后加点高毛利酒水/烤串</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 四、智能收银复购闭环（核心卖点） ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">4</span> ⭐ 智能收银 · 复购闭环（核心）</div>
+    <p class="section-desc">推广通的每一分钱都不能白花——用收银系统让流量变留量</p>
 
     <div class="highlight-box">
-      <h4>💡 核心诊断结论</h4>
-      <p><strong>产品力强 × 线上弱 = 巨大的增长空间</strong></p>
-      <p>品质烧烤有差异化基础，但缺乏线上流量入口和客户数据沉淀能力。<br>
-      当务之急是：<strong>"上团购打开线上入口 → 推广通精准引流 → 智能收银沉淀数据 → 自动化复购拉回流"</strong></p>
-    </div>
-  </div>
-</div>
-
-<!-- ======== 02 核心策略 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">02</div>
-    <h2>核心<span class="highlight">增长引擎</span></h2>
-    <div class="divider"></div>
-    <p class="lead">围绕"好产品+好系统+好流量"三位一体，构建四大增长引擎：</p>
-
-    <div class="card-grid">
-      <div class="card" style="border-top: 4px solid #6B0E0E;">
-        <div class="icon">🛒</div>
-        <h3>引擎一 · 团购上架</h3>
-        <p>从0到1搭建线上产品矩阵，用高性价比引流品打开线上流量入口，配合品质团餐承接消费升级需求。</p>
-      </div>
-      <div class="card" style="border-top: 4px solid #F0B429;">
-        <div class="icon">📢</div>
-        <h3>引擎二 · 推广通引流</h3>
-        <p>精准定向塘沽工农村+开发区，锁定吃烧烤的目标人群，每一分钱都花在刀刃上。</p>
-      </div>
-      <div class="card" style="border-top: 4px solid #1A7A1A;">
-        <div class="icon">🧾</div>
-        <h3>引擎三 · 智能收银复购</h3>
-        <p><strong>· 核心差异化 ·</strong> 美团智能版收银系统——沉淀每一笔消费数据，自动触达复购，让推广通引来的客户不再流失。</p>
-      </div>
-      <div class="card" style="border-top: 4px solid #1A5A8B;">
-        <div class="icon">🎬</div>
-        <h3>引擎四 · 内容引爆</h3>
-        <p>外摆烟火气 + 北京师傅好串 + 抖音达人探店，打造"工农村必吃烧烤"的认知。</p>
-      </div>
+        <h3>🔁 完整链路：推广通 → 到店 → 收银记录 → 复购触达</h3>
+        <div class="grid-2" style="margin-top:16px;">
+            <div>
+                <p style="color:var(--gold);font-weight:600;margin-bottom:8px;">📌 第一步：推广通精准引流</p>
+                <p>按店铺周边3公里+烧烤兴趣人群定向投放，把每一分钱花在"会来吃烧烤"的人身上</p>
+                <br>
+                <p style="color:var(--gold);font-weight:600;margin-bottom:8px;">📌 第二步：收银系统沉淀客户</p>
+                <p>客户到店扫码点餐/买单 → 自动记录手机号+消费记录+口味偏好 → 建立客户画像</p>
+            </div>
+            <div>
+                <p style="color:var(--gold);font-weight:600;margin-bottom:8px;">📌 第三步：自动化复购触达</p>
+                <p>系统自动推送：<br>
+                • 离店次日：「您的烤串已就位，今晚约吗？」<br>
+                • 7天未到店：「北京老师傅新研制了秘制羊排，来尝尝？」<br>
+                • 生日/节日：「欣欣炭火祝您生日快乐！到店送特色菜1份」</p>
+                <br>
+                <p style="color:var(--gold);font-weight:600;margin-bottom:8px;">📌 第四步：数据驱动优化</p>
+                <p>哪个套餐卖最好？回头客占比多少？门店根据数据调菜品、调推广策略</p>
+            </div>
+        </div>
     </div>
 
-    <div class="highlight-box">
-      <h4>🔄 增长飞轮</h4>
-      <p><strong>推广通引流</strong> → 到店消费 → <strong>智能收银沉淀客户数据</strong> → 自动化复购触达 → 老客回流 → 口碑传播 → 自然流量增长 → <strong>推广通效率更高</strong> → 良性循环 🔄</p>
+    <div class="grid-3" style="margin-top:20px;">
+        <div class="card">
+            <div class="icon">📊</div>
+            <h3>客户标签体系</h3>
+            <p style="font-size:13px;">消费后自动打标：</p>
+            <div class="badge-list">
+                <span class="tag tag-gold">高客单客户</span>
+                <span class="tag tag-red">酒水爱好者</span>
+                <span class="tag tag-green">家庭聚餐</span>
+                <span class="tag tag-blue">夜间活跃</span>
+                <span class="tag tag-red">回头客</span>
+            </div>
+            <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">不同标签客户推送不同优惠，精准不骚扰</p>
+        </div>
+        <div class="card">
+            <div class="icon">📱</div>
+            <h3>自动营销场景</h3>
+            <ul class="checklist">
+                <li>新客首单后次日关怀</li>
+                <li>老客7天未到店唤醒</li>
+                <li>生日/纪念日专属福利</li>
+                <li>新品上市老客尝鲜</li>
+                <li>天气变化提醒（下雨→室内二楼）</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="icon">💰</div>
+            <h3>降本数据预估</h3>
+            <ul class="checklist">
+                <li>推广通获客成本降低30%</li>
+                <li>复购率提升至25%+</li>
+                <li>减少人工手动回访成本</li>
+                <li>客户流失率降低40%</li>
+                <li>月度节省运营人力≈¥3,000</li>
+            </ul>
+        </div>
     </div>
-  </div>
-</div>
+</section>
 
-<!-- ======== 03 团购方案 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">03</div>
-    <h2>团购<span class="highlight">产品矩阵</span></h2>
-    <div class="divider"></div>
-    <p class="lead">针对线上0基础的现状，设置三级产品体系，从引流到利润层层递进：</p>
+<!-- ==================== 五、推广通策略 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">5</span> 推广通 · 精准投放策略</div>
+    <p class="section-desc">新店从0到1曝光，精准投而非盲目投</p>
 
     <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>层级</th>
-            <th>产品名称</th>
-            <th>定价</th>
-            <th>策略目标</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="tag tag-red">🔥 引流款</span></td>
-            <td><strong>19.9元抵50元</strong>（满100可用）</td>
-            <td>¥19.9</td>
-            <td>拉新获客，低门槛进店</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-red">🔥 引流款</span></td>
-            <td><strong>小龙虾99元3斤</strong>（延续线下活动）</td>
-            <td>¥99</td>
-            <td>承接线下已有活动，线上同步曝光</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-gold">💎 主推爆款</span></td>
-            <td><strong>2-3人品质烧烤套餐</strong><br>（鲜烤牛肉15串+烤鸡翅+烤蔬菜+凉菜+饮品）</td>
-            <td>¥128-158</td>
-            <td>体现品质食材优势，建立口碑</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-gold">💎 主推爆款</span></td>
-            <td><strong>超值双人夜宵套餐</strong><br>（烤串+小龙虾+干啤2杯）</td>
-            <td>¥138</td>
-            <td>夜宵时段抢占，配啤酒喝一送一</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-blue">👑 利润款</span></td>
-            <td><strong>4-6人好友聚会套餐</strong><br>（精选牛肉串+羊肉串+海鲜+酒水+凉菜）</td>
-            <td>¥298-368</td>
-            <td>拉高客单价，适合二楼堂食</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-blue">👑 利润款</span></td>
-            <td><strong>100元抵120元代金券</strong></td>
-            <td>¥100</td>
-            <td>锁定回头客，促进大额消费</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-green">🎁 打卡收藏</span></td>
-            <td><strong>收藏打卡送小菜/饮品</strong></td>
-            <td>免费</td>
-            <td>提升好评率+店铺热度</td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>阶段</th>
+                    <th>时间</th>
+                    <th>投放策略</th>
+                    <th>日预算</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tag tag-red">冷启动</span></td>
+                    <td>第1-2周</td>
+                    <td>覆盖工农村周边3公里，烧烤兴趣人群，主打团购套餐曝光</td>
+                    <td>¥100-150</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-gold">成长期</span></td>
+                    <td>第3-6周</td>
+                    <td>扩展至塘沽全区，增加"北京老师傅""品质烧烤"关键词</td>
+                    <td>¥150-200</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-green">稳定期</span></td>
+                    <td>第7-12周</td>
+                    <td>精选时段（17:00-22:00）投放，重点推高客单套餐</td>
+                    <td>¥150</td>
+                </tr>
+                <tr>
+                    <td><span class="tag tag-blue">精细化</span></td>
+                    <td>第13周起</td>
+                    <td>按收银系统数据标签，对回头客/高客单客户追投</td>
+                    <td>¥100</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="warn-box">
-      <h4>⚠️ 合规提示</h4>
-      <ul>
-        <li>❌ 禁止使用"好评返现"等违规话术</li>
-        <li>✅ 统一使用"收藏打卡""打卡到店"等合规引导</li>
-        <li>✅ 打卡赠送选择特色小菜或饮品，成本控制在¥3-5/份</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- ======== 04 智能收银复购闭环 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">04 · ⭐ 核心亮点</div>
-    <h2>智能收银 · <span class="highlight">复购闭环系统</span></h2>
-    <div class="divider"></div>
-    <p class="lead">这是本方案的核心竞争力所在——用美团智能版收银系统把"推广通花出去的每一分钱"都变成可复用的客户资产。</p>
-
-    <div class="highlight-box">
-      <h4>💡 为什么这对欣欣炭火烧烤至关重要？</h4>
-      <p>现在店里的客户来了就走了，没有任何数据留存。推广通花¥5,000引了100个客户，这100个客户吃完就走了，下个月还得再花¥5,000引新的100个。<br><br>
-      <strong>装上智能收银后：</strong> 这100个客户的信息、消费记录、口味偏好全部沉淀在系统里——通过自动化营销工具，可以每周触达他们，让他们再来、再消费。<br><br>
-      <strong>结论：推广通负责"开门"，智能收银负责"留客"，两者配合才能让营销费用产生复利效应。</strong></p>
-    </div>
-
-    <h3 style="color:#6B0E0E;font-size:18px;margin:32px 0 16px;">🧾 智能收银四大核心价值</h3>
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">📊</div>
-        <h3>① 客户数据沉淀</h3>
-        <p>每一笔扫码支付自动记录客户信息（手机号/消费金额/消费频次/菜品偏好），建立完整的客户画像数据库。</p>
-      </div>
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>② 自动化复购触达</h3>
-        <p>7天未到店 → 自动发券唤醒；生日 → 自动送福利；消费满5次 → 自动升级会员。全程无人值守。</p>
-      </div>
-      <div class="card">
-        <div class="icon">📈</div>
-        <h3>③ 经营数据看板</h3>
-        <p>实时查看：当日营收、客流趋势、菜品排名、翻台率、推广通ROI。老板手机随时看。</p>
-      </div>
-      <div class="card">
-        <div class="icon">🎯</div>
-        <h3>④ 精准营销</h3>
-        <p>基于消费数据做人群分层：高价值客户送大额券、沉睡客户送唤醒券、流失客户送回归券。不浪费一分钱营销预算。</p>
-      </div>
-    </div>
-
-    <h3 style="color:#6B0E0E;font-size:18px;margin:32px 0 16px;">🔄 复购闭环全流程</h3>
-    <div class="step-list">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h4>推广通引流进店</h4>
-          <p>用户通过美团团购/推广通广告进店，扫码点餐/结账</p>
+    <div class="grid-2" style="margin-top:20px;">
+        <div class="card">
+            <div class="icon">🎯</div>
+            <h3>人群定向策略</h3>
+            <ul class="checklist">
+                <li>📍 区域：工农村→塘沽全区（逐月扩展）</li>
+                <li>🔥 兴趣标签：烧烤、夜宵、小龙虾、啤酒</li>
+                <li>👥 年龄：22-40岁（烧烤主力消费群）</li>
+                <li>🌙 时段：17:00-23:00（夜宵黄金时段）</li>
+                <li>💰 消费力：中高（匹配品质定位）</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h4>智能收银自动留客</h4>
-          <p>支付即会员——客户手机号+消费数据自动存入系统，无需手动录入</p>
+        <div class="card">
+            <div class="icon">📈</div>
+            <h3>获客成本预期</h3>
+            <ul class="checklist">
+                <li>CPM（千次曝光）：约¥15-25</li>
+                <li>CPC（单次点击）：约¥0.5-1.5</li>
+                <li>到店转化成本：约¥20-30/人</li>
+                <li>月度推广通预算：约¥4,500-6,000</li>
+                <li>📌 配合收银复购闭环，单客成本逐月递减</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h4>消费后次日自动回访</h4>
-          <p>短信/微信自动推送："感谢您昨天在欣欣炭火烧烤的用餐，送上¥10代金券，期待您再次光临！"</p>
+    </div>
+</section>
+
+<!-- ==================== 六、内容营销·抖音达人 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">6</span> 内容营销 · 外摆烟火气+老师傅故事</div>
+    <p class="section-desc">老板已经在接触抖音达人，是时候系统化布局内容了</p>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="icon">👨‍🍳</div>
+            <h3>内容IP：北京老师傅</h3>
+            <p>"老板专门从北京请来的烤串师傅"——这就是最好的内容素材！</p>
+            <div class="badge-list" style="margin-top:12px;">
+                <span class="tag tag-gold">人物故事</span>
+                <span class="tag tag-red">匠心手艺</span>
+                <span class="tag tag-green">好肉好串</span>
+            </div>
+            <ul class="checklist" style="margin-top:12px;">
+                <li>🎬 老师傅烤串过程（大火翻烤→滋滋冒油）</li>
+                <li>🎬 好肉展示（进价高的肉和普通肉有什么区别）</li>
+                <li>🎬 外摆夜景（烟火气+碰杯氛围）</li>
+                <li>🎬 老板采访（为什么从北京挖师傅）</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h4>7天未到店自动唤醒</h4>
-          <p>"您最爱的鲜烤牛肉串又上新啦！本周到店凭此消息可免费领取烤串2串 🍢"</p>
+        <div class="card">
+            <div class="icon">📱</div>
+            <h3>达人合作计划</h3>
+            <p>老板已经在接触达人了，我们把它变成系统性打法</p>
+            <div class="badge-list" style="margin-top:12px;">
+                <span class="tag tag-blue">抖音美食达人</span>
+                <span class="tag tag-green">小红书探店</span>
+                <span class="tag tag-gold">点评笔记</span>
+            </div>
+            <ul class="checklist" style="margin-top:12px;">
+                <li>🎯 Tier1（1-3万粉）3-5位：置换套餐，铺量</li>
+                <li>🎯 Tier2（5-10万粉）1-2位：小额付费+置换</li>
+                <li>🎯 内容方向：外摆氛围+老师傅烤串+真材实料</li>
+                <li>🎯 发布节奏：每周2-3条，持续3个月</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <h4>30天沉睡客户大招回</h4>
-          <p>"老朋友好久不见！送您一张满150减30的专属券，周末带朋友来撸串吧 🔥"</p>
+    </div>
+
+    <div class="highlight-box" style="margin-top:20px;">
+        <h3>🔥 建议内容选题库</h3>
+        <div class="grid-2" style="margin-top:12px;">
+            <div>
+                <p><strong>抖音/小红书方向：</strong><br>
+                ① "天津烧烤天花板？北京老师傅空降塘沽"<br>
+                ② "烤串师傅说：这肉进价比你们想象的贵一倍"<br>
+                ③ "塘沽工农村，外摆烧烤的烟火气"<br>
+                ④ "小龙虾99三斤！老板疯了？"<br>
+                ⑤ "啤酒喝一送一，兄弟局约起来"</p>
+            </div>
+            <div>
+                <p><strong>大众点评笔记方向：</strong><br>
+                ① "工农村新发现！品质烧烤真香"<br>
+                ② "北京老师傅的烤串到底有多好吃"<br>
+                ③ "被这家烧烤的肉品质惊到了"<br>
+                ④ "夏天的正确打开方式——外摆烧烤"</p>
+            </div>
         </div>
-      </div>
     </div>
+</section>
 
-    <div class="table-wrap" style="margin-top:32px;">
-      <table>
-        <thead>
-          <tr><th>触达场景</th><th>触发条件</th><th>触达内容</th><th>预计回流率</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>消费后感谢</td><td>消费后次日</td><td>感谢短信+¥5-10代金券</td><td><span class="tag tag-green">25-35%</span></td></tr>
-          <tr><td>7天唤醒</td><td>7天未到店</td><td>新品推荐+免费赠品</td><td><span class="tag tag-green">15-20%</span></td></tr>
-          <tr><td>月度沉睡</td><td>30天未到店</td><td>大额满减券+限时福利</td><td><span class="tag tag-gold">10-15%</span></td></tr>
-          <tr><td>生日关怀</td><td>客户生日前3天</td><td>生日专属折扣+赠品</td><td><span class="tag tag-gold">40-50%</span></td></tr>
-          <tr><td>消费升级</td><td>累计消费满5次</td><td>自动升级会员+专属权益</td><td><span class="tag tag-green">长期留存提升30%</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<!-- ==================== 七、私域·会员体系 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">7</span> 私域搭建 · 会员+社群</div>
+    <p class="section-desc">让老客帮拉新客，让会员自己"上瘾"</p>
 
-<!-- ======== 05 推广通 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">05</div>
-    <h2>推广通 · <span class="highlight">精准投放策略</span></h2>
-    <div class="divider"></div>
-    <p class="lead">新店从0起步，推广通是最快的线上曝光工具。核心思路：先做精准度，再做规模。</p>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">📍</div>
-        <h3>定向范围</h3>
-        <p><strong>核心圈：</strong>工农村周边3公里（居民+上班族）<br>
-        <strong>辐射圈：</strong>塘沽开发区5公里（下班顺路人群）<br>
-        <strong>时段：</strong>16:00-23:00 夜间烧烤时段</p>
-      </div>
-      <div class="card">
-        <div class="icon">👥</div>
-        <h3>目标人群</h3>
-        <p><strong>年轻人（18-35岁）：</strong>夜宵消费主力<br>
-        <strong>家庭客（30-45岁）：</strong>品质烧烤聚餐<br>
-        <strong>上班族：</strong>下班约饭/团建</p>
-      </div>
-      <div class="card">
-        <div class="icon">🖼️</div>
-        <h3>投放素材</h3>
-        <p><strong>主打素材：</strong>鲜烤牛肉串特写（体现品质）<br>
-        <strong>活动素材：</strong>小龙虾99/3斤（价格吸引力）<br>
-        <strong>场景素材：</strong>外摆烟火气氛围图</p>
-      </div>
-      <div class="card">
-        <div class="icon">💰</div>
-        <h3>预算分配</h3>
-        <p><strong>第一阶段（1-2周）：</strong>日均¥100-150，测素材+人群<br>
-        <strong>第二阶段（3-4周）：</strong>日均¥200-300，放量跑<br>
-        <strong>月总预算：</strong>≈¥5,000-8,000</p>
-      </div>
-    </div>
-
-    <div class="highlight-box">
-      <h4>🎯 推广通ROI提升秘诀（结合智能收银）</h4>
-      <p>推广通引来的客户 → 智能收银自动记录 → 后续复购触达不另花钱<br>
-      <strong>实际ROI = 首次消费金额 + 后续复购金额总和 ÷ 推广通花费</strong><br>
-      假设：推广通花¥5,000引来250人，人均消费¥100 = 首轮¥25,000营收<br>
-      通过复购触达，其中50人回流再消费¥100 = 额外¥5,000<br>
-      <strong>真实ROI = (25,000 + 5,000) ÷ 5,000 = 6倍 🎯</strong></p>
-    </div>
-  </div>
-</div>
-
-<!-- ======== 06 内容营销 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">06</div>
-    <h2>内容营销 · <span class="highlight">抖音达人+烟火气</span></h2>
-    <div class="divider"></div>
-    <p class="lead">外摆烟火气 + 北京师傅品质串 = 天然爆款内容。配合老板已经在接触的抖音达人资源，快速打出知名度。</p>
-
-    <div class="step-list">
-      <div class="step-item">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <h4>🔥 外摆氛围感打造</h4>
-          <p>外摆区布置暖色串灯+炭火明档，让路人/食客自然产生拍摄欲望。<br>
-          <strong>传播素材：</strong>炭火滋滋冒油的特写、烤串翻飞的动态、烟火气环绕的夜景</p>
+    <div class="grid-3">
+        <div class="card">
+            <div class="icon">💳</div>
+            <h3>会员储值体系</h3>
+            <ul class="checklist">
+                <li>充¥300送¥50（锁定3次消费）</li>
+                <li>充¥500送¥100（锁定5次）</li>
+                <li>充¥1000送¥250（锁定10次·深度锁定）</li>
+                <li>储值会员享「专属新品试吃权」</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <h4>🎬 抖音达人探店（利用老板已有资源）</h4>
-          <p>邀请塘沽/开发区本地美食达人前来探店，重点突出：</p>
-          <ul>
-            <li>「北京来的烤串师傅」—— 手艺人的故事</li>
-            <li>「比普通进价高30%的肉串」—— 食材品质可视化</li>
-            <li>「一楼外摆烟火气+二楼好友包场」—— 场景差异化</li>
-          </ul>
+        <div class="card">
+            <div class="icon">👥</div>
+            <h3>社群运营</h3>
+            <ul class="checklist">
+                <li>微信群：到店消费扫码入群</li>
+                <li>每周福利日：群内抢半价串</li>
+                <li>雨天福利：群公告发"下雨了，二楼有位"</li>
+                <li>新菜预告：群内提前试吃招募</li>
+                <li>⚡ 重要：有赞小程序+微信群配合收银系统</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <h4>📱 小红书+朋友圈种草</h4>
-          <p>鼓励顾客拍照发小红书/朋友圈（打卡到店赠送小菜），内容建议：</p>
-          <ul>
-            <li>"工农村新发现的宝藏烧烤，北京师傅烤的就是不一样"</li>
-            <li>"小龙虾99三斤+干啤喝一送一，夏天就该这么过"</li>
-          </ul>
+        <div class="card">
+            <div class="icon">🎁</div>
+            <h3>老客裂变</h3>
+            <ul class="checklist">
+                <li>带朋友首次到店，送烤串5串</li>
+                <li>大众点评写真实评价，送饮料1份</li>
+                <li>抖音发打卡视频@店铺，送小菜1份</li>
+                <li>会员生日周：到店送特色菜+折扣</li>
+            </ul>
         </div>
-      </div>
-      <div class="step-item">
-        <div class="step-num">4</div>
-        <div class="step-content">
-          <h4>🏪 店铺本身即广告位</h4>
-          <p>外摆区域设置拍照打卡墙（店名logo+特色标语），路过的自然流量也能转化。</p>
+    </div>
+</section>
+
+<!-- ==================== 八、现场运营 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">8</span> 现场运营 · 外摆+二楼动线</div>
+    <p class="section-desc">空间有限，体验做精</p>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="icon">🏪</div>
+            <h3>一楼外摆区</h3>
+            <ul class="checklist">
+                <li>🔥 外摆是最大的流量入口！打造「路过走不动」的氛围</li>
+                <li>💡 暖色灯串+炭火明档，视觉+嗅觉双重勾引</li>
+                <li>🪧 门口立牌：北京老师傅烤串/今日推荐</li>
+                <li>🎵 适当背景音乐，营造夜宵氛围</li>
+                <li>📸 设置"拍照打卡点"（发光字/特色墙面）</li>
+            </ul>
         </div>
-      </div>
+        <div class="card">
+            <div class="icon">🪑</div>
+            <h3>二楼用餐区</h3>
+            <ul class="checklist">
+                <li>🏠 10张桌位=计划性聚餐场景</li>
+                <li>📞 推广通引导电话预约二楼位置</li>
+                <li>🎯 外摆坐满→自然引流到二楼</li>
+                <li>🌧️ 雨天外摆不行→二楼成为主力区</li>
+                <li>🧾 收银系统+扫码点餐：减少人力成本</li>
+            </ul>
+        </div>
     </div>
 
-    <div class="card-grid" style="margin-top:24px;">
-      <div class="card">
-        <div class="icon">🎬</div>
-        <h3>达人合作方案</h3>
-        <p><strong>阶段一（第1-2周）：</strong>邀请2-3位本地中小达人（1-5万粉），置换+低佣合作<br>
-        <strong>阶段二（第3-4周）：</strong>效果好的达人追加，邀请1位中腰部达人（5-20万粉）<br>
-        <strong>预算：</strong>¥3,000-5,000/月</p>
-      </div>
-      <div class="card">
-        <div class="icon">📸</div>
-        <h3>打卡赠品方案</h3>
-        <p><strong>打卡到店（大众点评/小红书）：</strong>赠送凉菜1份 或 饮品1杯<br>
-        <strong>收藏店铺（大众点评）：</strong>赠送烤串2串<br>
-        <strong>成本控制：</strong>每份赠品成本控制在¥3-5</p>
-      </div>
+    <div class="highlight-box" style="margin-top:20px;">
+        <h3>🌤️ 天气应对策略（收银系统辅助）</h3>
+        <p>
+        <strong>晴天：</strong> 外摆全开，氛围拉满，推广通主投18:00-23:00<br>
+        <strong>阴天/小雨：</strong> 提前通过收银系统的客户标签，给"夜间活跃"标签客户推送二楼有位的提醒<br>
+        <strong>恶劣天气：</strong> 推广通暂停，集中做社群运营+内容发布，蓄力晴天
+        </p>
     </div>
-  </div>
-</div>
+</section>
 
-<!-- ======== 07 预算KPI ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">07</div>
-    <h2>投入预算 &amp; <span class="highlight">KPI目标</span></h2>
-    <div class="divider"></div>
-    <p class="lead">首月总投资控制在¥12,800以内，重点投入能产生长期复利效应的项目：</p>
+<!-- ==================== 九、执行节奏 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">9</span> 执行节奏 · 90天起盘计划</div>
+    <p class="section-desc">分阶段推进，不急于求成</p>
 
-    <div class="budget-row">
-      <div class="budget-item" style="border-top: 3px solid #6B0E0E;">
-        <div class="label">推广通投放</div>
-        <div class="amt">¥5,000-8,000</div>
-        <div class="note">日均¥150-250 · 精准引流</div>
-      </div>
-      <div class="budget-item" style="border-top: 3px solid #F0B429;">
-        <div class="label">抖音达人合作</div>
-        <div class="amt">¥3,000-5,000</div>
-        <div class="note">2-3位本地达人探店</div>
-      </div>
-      <div class="budget-item" style="border-top: 3px solid #1A7A1A;">
-        <div class="label">智能收银系统</div>
-        <div class="amt">¥0 起</div>
-        <div class="note">美团智能版收银 · 按需配置</div>
-      </div>
-      <div class="budget-item" style="border-top: 3px solid #1A5A8B;">
-        <div class="label">打卡赠品成本</div>
-        <div class="amt">≈¥800</div>
-        <div class="note">日均¥25-30 · 引导好评</div>
-      </div>
-      <div class="budget-item" style="border-top: 3px solid #8B6914;">
-        <div class="label">外摆氛围布置</div>
-        <div class="amt">≈¥2,000</div>
-        <div class="note">串灯+打卡墙（一次性）</div>
-      </div>
+    <div class="timeline">
+        <div class="timeline-item">
+            <h4>📦 第1-2周 · 基建期</h4>
+            <p>
+            ① 上线美团团购套餐（双人餐¥168 / 四人餐¥328 / 小龙虾¥99）<br>
+            ② 开通推广通账户，冷启动投放<br>
+            ③ 安装智能收银系统，配置扫码点餐<br>
+            ④ 搭建大众点评店铺页（完善门头照/菜单/环境照）
+            </p>
+        </div>
+        <div class="timeline-item">
+            <h4>🔥 第3-4周 · 引爆期</h4>
+            <p>
+            ① 推广通加量到日¥150，覆盖塘沽全区<br>
+            ② 启动第一批抖音达人（3位小达人铺量）<br>
+            ③ 打卡收藏有礼活动上线，积累初始评价<br>
+            ④ 收银系统开始沉淀第一批客户数据
+            </p>
+        </div>
+        <div class="timeline-item">
+            <h4>📈 第5-8周 · 爬坡期</h4>
+            <p>
+            ① 启动收银系统自动化复购触达（7天未到店唤醒）<br>
+            ② 会员储值体系上线<br>
+            ③ 第二批达人探店（1-2位中腰部）+小红书笔记<br>
+            ④ 根据推广通数据优化投放时段和人群
+            </p>
+        </div>
+        <div class="timeline-item">
+            <h4>🏆 第9-12周 · 稳定期</h4>
+            <p>
+            ① 目标达到大众点评3.5-4.0星<br>
+            ② 复购率稳定在20%+<br>
+            ③ 推广通转为精细化投放（只投高转化时段+人群）<br>
+            ④ 日均曝光稳定在5,000+，月消费人数150+
+            </p>
+        </div>
     </div>
+</section>
 
-    <div style="text-align:center;background:#fff;border-radius:12px;padding:24px;margin:24px 0;box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-      <p style="font-size:14px;color:#888;">📊 <strong>首月总投资预估</strong></p>
-      <p style="font-size:40px;font-weight:900;color:#6B0E0E;">¥10,800 - 15,800</p>
-      <p style="font-size:13px;color:#999;">不含智能收银硬件（可按需选配）</p>
-    </div>
-
-    <h3 style="color:#6B0E0E;font-size:18px;margin:32px 0 16px;">🎯 30天KPI目标</h3>
-    <div class="kpi-grid">
-      <div class="kpi-card">
-        <div class="val">4.5<span class="unit">★</span></div>
-        <div class="desc">大众点评星级目标<br><small>从暂无星级 → 4.5星</small></div>
-      </div>
-      <div class="kpi-card">
-        <div class="val">100<span class="unit">+</span></div>
-        <div class="desc">月累计评价数<br><small>引导真实好评</small></div>
-      </div>
-      <div class="kpi-card">
-        <div class="val">500<span class="unit">+</span></div>
-        <div class="desc">月新增会员/客户<br><small>智能收银沉淀</small></div>
-      </div>
-      <div class="kpi-card">
-        <div class="val">50<span class="unit">%</span></div>
-        <div class="desc">复购触达回流率<br><small>7天内再次到店</small></div>
-      </div>
-      <div class="kpi-card">
-        <div class="val">60k<span class="unit">+</span></div>
-        <div class="desc">首月线上曝光量<br><small>团购+推广通</small></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ======== 08 执行节奏 ======== -->
-<div class="container">
-  <div class="section">
-    <div class="section-tag">08</div>
-    <h2>30天<span class="highlight">执行节奏</span></h2>
-    <div class="divider"></div>
-    <p class="lead">从0到1，分三波推进，确保每一步走稳：</p>
+<!-- ==================== 十、预算与KPI ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">10</span> 预算与KPI</div>
+    <p class="section-desc">花该花的钱，赚该赚的钱</p>
 
     <div class="table-wrap">
-      <table>
-        <thead>
-          <tr><th>阶段</th><th>时间</th><th>核心动作</th><th>预期产出</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="tag tag-red">🔥 第一波</span></td>
-            <td>第1-7天</td>
-            <td>
-              • 开通商户通+团购上架<br>
-              • 推广通开户+测试投放<br>
-              • 外摆氛围布置<br>
-              • 安装智能收银系统
-            </td>
-            <td>✅ 团购上线<br>✅ 推广通开跑<br>✅ 收银系统就位</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-gold">💎 第二波</span></td>
-            <td>第8-14天</td>
-            <td>
-              • 推广通调优放量（日均¥150-200）<br>
-              • 邀请首批达人探店<br>
-              • 智能收银复购触达开启<br>
-              • 收藏打卡活动上线
-            </td>
-            <td>✅ 首波客流进店<br>✅ 达人内容发布<br>✅ 复购闭环跑通</td>
-          </tr>
-          <tr>
-            <td><span class="tag tag-blue">👑 第三波</span></td>
-            <td>第15-30天</td>
-            <td>
-              • 推广通稳定投放（日均¥200-300）<br>
-              • 追加达人合作<br>
-              • 复购数据复盘+优化<br>
-              • 根据数据调整团购产品
-            </td>
-            <td>✅ 星级稳定4.5+<br>✅ 月曝光60k+<br>✅ 会员沉淀500+</td>
-          </tr>
-        </tbody>
-      </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>项目</th>
+                    <th>首月预算</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>📢 推广通</td>
+                    <td>¥4,500</td>
+                    <td>日¥150 × 30天，冷启动期</td>
+                </tr>
+                <tr>
+                    <td>🎬 抖音达人</td>
+                    <td>¥3,000-5,000</td>
+                    <td>3-5位小达人置换+1位中腰部付费</td>
+                </tr>
+                <tr>
+                    <td>🖥️ 智能收银系统</td>
+                    <td>¥0（首年免费/极低）</td>
+                    <td>核心卖点：系统钱花在刀刃上</td>
+                </tr>
+                <tr>
+                    <td>🎁 打卡收藏礼品</td>
+                    <td>¥1,000</td>
+                    <td>小菜/饮料成本</td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;color:var(--gold);">📊 合计</td>
+                    <td style="font-weight:700;color:var(--gold);">≈¥8,500-10,500</td>
+                    <td style="color:var(--text-secondary);">首月投入</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div class="highlight-box">
-      <h4>📅 关键时间节点</h4>
-      <ul>
-        <li><strong>第一周：</strong>完成所有线上基础设施（团购+推广通+收银系统）</li>
-        <li><strong>第二周：</strong>达人探店内容集中发布，形成第一波传播高峰</li>
-        <li><strong>第三周：</strong>复购闭环开始产出效果，数据反馈优化投放</li>
-        <li><strong>第四周：</strong>复盘首月数据，规划次月策略</li>
-      </ul>
+    <div class="kpi-grid" style="margin-top:24px;">
+        <div class="kpi-card">
+            <div class="kpi-target">3.5 - 4.0 ⭐</div>
+            <div class="kpi-label">大众点评星级</div>
+            <div class="kpi-desc">90天目标，从0起步</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-target">50,000+</div>
+            <div class="kpi-label">月均曝光量</div>
+            <div class="kpi-desc">推广通+自然搜索</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-target">200+</div>
+            <div class="kpi-label">月消费人数</div>
+            <div class="kpi-desc">推广通引流到店</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-target">25%+</div>
+            <div class="kpi-label">复购率</div>
+            <div class="kpi-desc">收银系统自动化触达</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-target">50+</div>
+            <div class="kpi-label">初始评价量</div>
+            <div class="kpi-desc">真实消费评价积累</div>
+        </div>
+        <div class="kpi-card">
+            <div class="kpi-target">200+</div>
+            <div class="kpi-label">储值会员数</div>
+            <div class="kpi-desc">3个月目标</div>
+        </div>
     </div>
-  </div>
+</section>
+
+<!-- ==================== 十一、竞品分析 ==================== -->
+<section class="section">
+    <div class="section-title"><span class="num">11</span> 竞品分析 · 差异化卡位</div>
+    <p class="section-desc">塘沽工农村周边烧烤概览</p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>竞品</th>
+                    <th>评分</th>
+                    <th>人均</th>
+                    <th>定位</th>
+                    <th>欣欣的优势</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>传统烧烤摊</td>
+                    <td>3.5-4.0</td>
+                    <td>¥40-60</td>
+                    <td>低价走量</td>
+                    <td>✅ 品质碾压，老师傅手艺+好食材</td>
+                </tr>
+                <tr>
+                    <td>连锁烧烤品牌</td>
+                    <td>4.0-4.5</td>
+                    <td>¥70-90</td>
+                    <td>标准化出品</td>
+                    <td>✅ 现串现烤+老师傅匠心，烟火气碾压</td>
+                </tr>
+                <tr>
+                    <td>夜市大排档</td>
+                    <td>3.0-3.5</td>
+                    <td>¥30-50</td>
+                    <td>便宜管饱</td>
+                    <td>✅ 品质差异巨大，目标客群不同</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="highlight-box" style="margin-top:20px;">
+        <h3>🎯 欣欣的差异化定位</h3>
+        <p>
+        「工农村品质烧烤天花板」—— 不跟低价烧烤摊抢生意，做"想吃好烤串"的那群人<br>
+        <strong>一句话Slogan建议：</strong><br>
+        🏆 「北京老师傅 · 好肉烤好串」<br>
+        🏆 「工农村的烟火气 · 北京来的老师傅」
+        </p>
+    </div>
+</section>
+
+<!-- ==================== 十二、总结 ==================== -->
+<section class="section" style="border-bottom:none;">
+    <div class="section-title"><span class="num">12</span> 方案总结</div>
+    <p class="section-desc">一句话：品质做口碑，收银做复购，内容做引爆</p>
+
+    <div class="grid-3">
+        <div class="card" style="border-color:var(--primary);">
+            <div class="icon">🥩</div>
+            <h3>品质是根基</h3>
+            <p>北京老师傅+好食材是核心壁垒，不打价格战，不伤品牌元气</p>
+        </div>
+        <div class="card" style="border-color:var(--gold);">
+            <div class="icon">🔄</div>
+            <h3>收银是引擎</h3>
+            <p>智能收银系统沉淀客户数据 + 自动化复购触达 = 推广通花一次钱，用多次效果</p>
+        </div>
+        <div class="card" style="border-color:var(--primary-light);">
+            <div class="icon">🔥</div>
+            <h3>内容是引爆器</h3>
+            <p>外摆烟火气 + 老师傅匠心故事 + 抖音达人矩阵 = 新店快速出圈</p>
+        </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top:24px;text-align:center;">
+        <h3 style="text-align:center;">🚀 期待合作 · 欣欣炭火烧烤</h3>
+        <p style="text-align:center;margin-top:8px;">
+        北京老师傅·好肉烤好串<br>
+        塘沽工农村 · 新店起盘 · 全渠道运营
+        </p>
+        <p style="text-align:center;color:var(--text-muted);margin-top:12px;font-size:13px;">
+        全渠道运营方案 · 2026年6月
+        </p>
+    </div>
+</section>
+
 </div>
 
-<!-- ======== 附录 ======== -->
-<div class="container">
-  <div class="section" style="padding-bottom:80px;">
-    <div class="section-tag">附录</div>
-    <h2>为什么选<span class="highlight">美团智能版收银</span></h2>
-    <div class="divider"></div>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="icon">🔗</div>
-        <h3>与美团生态打通</h3>
-        <p>团购核销、推广通数据、客户评价、经营分析……全部在一个系统内完成，无需多系统切换。</p>
-      </div>
-      <div class="card">
-        <div class="icon">📱</div>
-        <h3>老板手机看店</h3>
-        <p>实时营收、客流、菜品排名、评价监控，不在店里也能掌握经营状况。</p>
-      </div>
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>自动化营销</h3>
-        <p>无需专人运营，系统自动发券、自动触达、自动分析，省人工成本。</p>
-      </div>
-      <div class="card">
-        <div class="icon">📈</div>
-        <h3>数据驱动决策</h3>
-        <p>什么菜品卖得好、什么时段客流大、什么渠道转化高——以数据说话，不再凭感觉经营。</p>
-      </div>
-    </div>
-
-    <div class="warn-box" style="margin-top:32px;">
-      <h4>📞 下一步行动建议</h4>
-      <ol style="padding-left:18px;font-size:14px;color:#444;line-height:2;">
-        <li><strong>约老板面谈</strong> — 拿着这份方案去跟老板敲定合作意向</li>
-        <li><strong>先上团购</strong> — 这是最快能见效的（7天可上线）</li>
-        <li><strong>推广通开通</strong> — 配合团购同步投放</li>
-        <li><strong>智能收银安装</strong> — 核心闭环落地，开启客户数据沉淀</li>
-        <li><strong>达人探店排期</strong> — 利用老板已有资源快速推进</li>
-      </ol>
-    </div>
-  </div>
-</div>
-
-<!-- ======== FOOTER ======== -->
-<div class="footer">
-  <p>🔥 欣欣炭火烧烤 · 全渠道运营方案</p>
-  <p>方案出品：娄苏 · 业务开发-地面产品销售</p>
-  <p style="margin-top:8px;opacity:0.5;font-size:12px;">📅 2026年6月</p>
-</div>
+<footer class="footer">
+    <p>欣欣炭火烧烤 · 全渠道运营方案</p>
+    <p style="margin-top:4px;">由 1024 小助手 生成 · 仅供内部沟通使用</p>
+</footer>
 
 </body>
 </html>
